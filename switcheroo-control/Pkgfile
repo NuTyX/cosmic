@@ -1,0 +1,15 @@
+makedepends=(gtk-doc dbus-python glib libgudev python-dbusmock python-gobject xorg-libdrm)
+
+description="D-Bus service to check the availability of dual-GPU"
+url="https://gitlab.freedesktop.org/hadess/switcheroo-control"
+
+packager="Grat-OS Team"
+contributors="Grat-OS Team"
+
+name=switcheroo-control
+version=3.0
+release=1
+
+source=(https://gitlab.freedesktop.org/hadess/switcheroo-control/-/archive/$version/switcheroo-control-$version.tar.gz)
+
+build=meson
