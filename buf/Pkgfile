@@ -1,0 +1,84 @@
+description="A tool for working with Protocol Buffers"
+url="https://buf.build"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Grat-OS Team"
+
+name=buf
+version=1.64.0
+release=1
+
+goversion=1.25.5
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://github.com/bufbuild/buf/archive/refs/tags/v${version}.tar.gz)
+
+prepare() {
+  cd $name-$version
+
+  wget https://golang.org/dl/go$goversion.linux-amd64.tar.gz
+  tar -C $SRC -xf go$goversion.linux-amd64.tar.gz
+
+  export CGO_LDFLAGS="${LDFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export PATH=$SRC/go/bin:$PATH
+  export GOPATH=$SRC/go/bin
+  export GOCACHE=/tmp
+  export GOFLAGS="-buildmode=pie -trimpath"
+  export CGO_LDFLAGS_ALLOW="-Wl,-z,now"
+
+  # create directory for build output
+  mkdir build
+
+  # verify modules
+  go mod verify
+}
+
+build() {
+  cd $name-$version
+
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export CGO_LDFLAGS="${LDFLAGS}"
+  export PATH=$SRC/go/bin:$PATH
+  export GOPATH=$SRC/go/bin
+  export GOCACHE=/tmp
+
+  go build -v \
+           -buildmode=pie \
+           -mod=readonly \
+           -modcacherw \
+           -ldflags "-compressdwarf=false \
+           -linkmode external \
+           -extldflags '${LDFLAGS}'" \
+           -o build \
+           ./cmd/...
+
+  # generate shell completions
+  for shell in bash fish zsh; do
+    ./build/buf completion "$shell" > "build/completion.$shell"
+  done
+
+  # generate manpages
+  mkdir -p build/manpages
+  ./build/buf manpages build/manpages
+}
+
+package() {
+  cd $name-$version
+
+  # binaries
+  install -vDm755 -t $PKG/usr/bin build/{buf,protoc-gen-buf-lint,protoc-gen-buf-breaking}
+
+  # shell completions
+  install -vDm644 build/completion.bash $PKG/usr/share/bash-completion/completions/buf
+  install -vDm644 build/completion.fish $PKG/usr/share/fish/vendor_completions.d/buf.fish
+  install -vDm644 build/completion.zsh $PKG/usr/share/zsh/site-functions/_buf
+
+  # man pages
+  install -vDm644 build/manpages/* -t $PKG/usr/share/man/man1
+}
