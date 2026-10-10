@@ -1,0 +1,32 @@
+makedepends=(llvm cosmic-icon-theme just libxkbcommon  rustc)
+
+description="Cosmic App Library"
+url="https://github.com/pop-os/cosmic-applibrary"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+name=cosmic-applibrary
+version=1.10.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://github.com/pop-os/cosmic-applibrary/archive/refs/tags/epoch-$version.tar.gz)
+
+prepare() {
+  cd cosmic-app-library-epoch-$version
+  cargo fetch
+}
+
+build() {
+  cd cosmic-app-library-epoch-$version
+  just
+}
+
+package() {
+  cd cosmic-app-library-epoch-$version
+  just rootdir=$PKG install
+}
