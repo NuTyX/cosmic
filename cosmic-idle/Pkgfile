@@ -1,0 +1,32 @@
+makedepends=(llvm git just libxkbcommon rustc wayland)
+
+description="Cosmic idle daemon"
+url="https://github.com/pop-os/cosmic-idle"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+name=cosmic-idle
+version=1.10.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://github.com/pop-os/cosmic-idle/archive/refs/tags/epoch-$version.tar.gz)
+
+prepare() {
+  cd $name-epoch-$version
+  cargo fetch --locked
+}
+
+build() {
+  cd $name-epoch-$version
+  just build-release --frozen
+}
+
+package() {
+  cd $name-epoch-$version
+  just rootdir=$PKG install
+}
