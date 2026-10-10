@@ -1,0 +1,38 @@
+description="PDF reader for COSMIC"
+url="https://github.com/pop-os/cosmic-reader"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+makedepends=(brotli cosmic-icon-theme git gumbo-parser harfbuzz jbig2dec just
+             leptonica libinput libjpeg-turbo libxkbcommon pulseaudio rustc
+              systemd tesseract unzip xorg-fontconfig)
+
+name=cosmic-reader
+version=1.10.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+#Last commit on cosmic-reader repo
+_commit=9a34cc93c817f07be9b3540faa5d146c2a891e64
+
+prepare() {
+git clone https://github.com/pop-os/cosmic-reader.git $name
+
+cd $name
+  git checkout ${_commit}
+  cargo fetch --locked
+}
+
+build() {
+  cd $name
+  just build-release --frozen
+}
+
+package() {
+  cd $name
+  just rootdir=$PKG install
+}
