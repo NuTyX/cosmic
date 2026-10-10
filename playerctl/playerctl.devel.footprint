@@ -1,0 +1,10 @@
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/playerctl/
+-rw-r--r--	root/root	usr/include/playerctl/playerctl-enum-types.h
+-rw-r--r--	root/root	usr/include/playerctl/playerctl-player-manager.h
+-rw-r--r--	root/root	usr/include/playerctl/playerctl-player-name.h
+-rw-r--r--	root/root	usr/include/playerctl/playerctl-player.h
+-rw-r--r--	root/root	usr/include/playerctl/playerctl-version.h
+-rw-r--r--	root/root	usr/include/playerctl/playerctl.h
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/playerctl.pc
