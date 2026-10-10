@@ -1,0 +1,29 @@
+makedepends=(unzip)
+
+description="The official Dart sdk from dart-lang project (stable)"
+url="https://www.dartlang.org/tools/sdk/archive"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+name=dart-sdk
+version=3.10.7
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://storage.googleapis.com/dart-archive/channels/stable/release/$version/sdk/dartsdk-linux-x64-release.zip)
+
+build() {
+  # Uncompressed name is "dart-sdk" not "dart-sdk-dev"
+  cd $SRC/dart-sdk
+
+  # Install Application
+  install -d $PKG/{opt/$name,usr/bin}
+  cp -a . $PKG/opt/$name
+  for f in $PKG/opt/$name/bin/*; do
+    ln -s /opt/$name/bin/${f##*/} $PKG/usr/bin/
+  done
+
+  chmod -R ugo+rX $PKG/opt
+}
