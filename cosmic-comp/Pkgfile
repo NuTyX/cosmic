@@ -1,0 +1,34 @@
+description="Compositor for the COSMIC desktop environment"
+url="https://github.com/pop-os/cosmic-comp"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+makedepends=(just llvm libdisplay-info libinput libxcb libxkbcommon 
+             mesa rustc seatd systemd wayland xorg-fontconfig xorg-pixman)
+
+name=cosmic-comp
+version=1.10.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://github.com/pop-os/cosmic-comp/archive/refs/tags/epoch-$version.tar.gz)
+
+prepare() {
+  cd $name-epoch-$version
+  cargo fetch --locked
+  sed 's/lto = "fat"/lto = "thin"/' -i Cargo.toml
+}
+
+build() {
+  cd $name-epoch-$version
+  just build-release --frozen
+}
+
+package() {
+  cd $name-epoch-$version
+  just rootdir=$PKG install
+}
