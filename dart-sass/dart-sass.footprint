@@ -1,0 +1,9 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/sass
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/dart-sass/
+-rw-r--r--	root/root	usr/share/dart-sass/embedded_sass.proto
+drwxr-xr-x	root/root	usr/share/licenses/
+drwxr-xr-x	root/root	usr/share/licenses/dart-sass/
+-rw-r--r--	root/root	usr/share/licenses/dart-sass/LICENSE

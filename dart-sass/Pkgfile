@@ -1,0 +1,56 @@
+makedepends=(buf dart-sdk)
+
+description="Sass makes CSS fun again"
+url="http://sass-lang.com/"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+name=dart-sass
+version=1.97.3
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+source=(https://github.com/sass/sass/archive/refs/tags/embedded-protocol-3.2.0.tar.gz
+        https://github.com/sass/dart-sass/archive/refs/tags/$version.tar.gz)
+
+prepare() {
+  cd $name-$version
+
+  mkdir -p build
+  ln -sf $SRC/sass-embedded-protocol-3.2.0 build/language
+
+  # disable analytics
+  dart --disable-analytics
+
+  mkdir pub_cache && export PUB_CACHE=$SRC/$name/pub_cache
+
+  # download dependencies
+  dart pub get
+}
+
+build() {
+  cd $name-$version
+
+  export PUB_CACHE=$SRC/$name/pub_cache
+
+  UPDATE_SASS_PROTOCOL=false dart run grinder protobuf
+  dart compile exe \
+    -Dversion=$version \
+    -Dprotocol-version=$(cat build/language/spec/EMBEDDED_PROTOCOL_VERSION) \
+    -o sass \
+    bin/sass.dart
+}
+
+package() {
+  cd $name-$version
+
+  # binary
+  install -vDm755 -t $PKG/usr/bin sass
+
+  # embedded-protocol protobuf file
+  install -vDm644 -t $PKG/usr/share/$name build/language/spec/embedded_sass.proto
+
+  # license
+  install -vDm644 -t $PKG/usr/share/licenses/$name LICENSE
+}
