@@ -1,0 +1,33 @@
+description="WIP COSMIC media player"
+url="https://github.com/pop-os/cosmic-player"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+makedepends=(glib gstreamer gstreamer-plugins-base gstreamer-plugins-good
+             just libxkbcommon rustc)
+
+name=cosmic-player
+version=1.10.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://github.com/pop-os/cosmic-player/archive/refs/tags/epoch-$version.tar.gz)
+
+prepare() {
+  cd $name-epoch-$version
+  cargo fetch --locked --target "$(rustc --print host-tuple)"
+}
+
+build() {
+  cd $name-epoch-$version
+  just build-release --frozen
+}
+
+package() {
+  cd $name-epoch-$version
+  just rootdir=$PKG install
+}
