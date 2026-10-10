@@ -1,0 +1,29 @@
+description="HTML5 parsing library in pure C99"
+url="https://codeberg.org/gumbo-parser/gumbo-parser"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+name=gumbo-parser
+version=0.14.1
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+makedepends=(libtool m4 autoconf)
+
+source=($url/archive/$version.tar.gz)
+
+prepare() {
+  cd $name
+  ./autogen.sh
+}
+
+build() {
+  cd $name
+
+  ./configure --prefix=/usr
+
+  make
+  make DESTDIR=$PKG install
+}
