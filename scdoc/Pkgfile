@@ -1,0 +1,27 @@
+description="Tool for generating roff manual pages"
+url="https://git.sr.ht/~sircmpwn/scdoc/"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+name=scdoc
+version=1.11.4
+release=2
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://git.sr.ht/~sircmpwn/$name/archive/$version.tar.gz)
+
+build() {
+    cd $name-$version
+
+    # Upstream purposefully does not honor the user's LDFLAGS in order to keep
+    # scdoc static. As we gain no benefit to statically linking and, in fact,
+    # lose standard Arch practices (such as RELRO and PIE), we must override
+    # LDFLAGS
+
+    make PREFIX=/usr LDFLAGS="$LDFLAGS"
+    make PREFIX=/usr DESTDIR=$PKG install
+
+   install -Dm644 COPYING -t $PKG/usr/share/licenses/$name
+}
