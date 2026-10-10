@@ -1,0 +1,19 @@
+description="Wallpapers for the COSMIC Desktop Environment"
+url="https://github.com/pop-os/cosmic-wallpapers"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+name=cosmic-wallpapers
+version=1.10.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+source=(https://github.com/pop-os/cosmic-wallpapers/archive/refs/tags/epoch-$version.tar.gz)
+
+build() {
+  cd $name-epoch-$version
+  make DESTDIR=$PKG install
+}
