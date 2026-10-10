@@ -1,0 +1,22 @@
+makedepends=(rustc)
+
+description="Cosmic Sound Theme"
+url="https://github.com/pop-os/cosmic-sound-theme"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+name=cosmic-sound-theme
+version=1.10.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+source=(https://github.com/pop-os/cosmic-sound-theme/archive/refs/tags/epoch-$version.tar.gz)
+
+prepare() {
+  mv $name-epoch-$version $name-$version
+}
+
+build=meson
