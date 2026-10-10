@@ -1,5 +1,3 @@
-makedepends=(adwaita-icon-theme)
-
 description="System76 Pop Icon Theme"
 url="https://github.com/pop-os/icon-theme"
 
@@ -8,7 +6,10 @@ contributors="Grat-OS Tema"
 
 name=pop-icon-theme
 version=3.5.1
-release=1
+release=2
+
+makedepends=(adwaita-icon-theme)
+run=(gtk-update-icon-cache)
 
 PKGMK_KEEP_SOURCES="no"
 source=(https://github.com/pop-os/icon-theme/archive/refs/tags/v$version.tar.gz)
