@@ -1,0 +1,25 @@
+description="Cosmic icon theme"
+url="https://github.com/pop-os/cosmic-icons"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+set=(cosmic)
+
+makedepends=(pop-icon-theme just)
+run=(gtk-update-icon-cache)
+
+name=cosmic-icon-theme
+version=1.10.0
+release=2
+
+_name=cosmic-icons
+
+PKGMK_KEEP_SOURCES='no'
+
+source=(https://github.com/pop-os/${_name}/archive/refs/tags/epoch-$version.tar.gz)
+
+build() {
+  cd cosmic-icons-epoch-$version
+  just rootdir=$PKG install
+}
