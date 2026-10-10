@@ -1,0 +1,29 @@
+makedepends=(dart-sass)
+
+description="Unofficial GTK 3 port of the libadwaita theme"
+url="https://github.com/lassekongo83/adw-gtk3"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+name=adw-gtk-theme
+version=6.5
+release=2
+
+PKGMK_KEEP_SOURCES="no"
+makedepends=(python meson)
+
+source=(https://github.com/lassekongo83/adw-gtk3/archive/refs/tags/v${version}.tar.gz)
+
+build() {
+ mkdir build
+ cd    build
+
+ meson setup --prefix=/usr          \
+             --libdir=/usr/lib      \
+             ../adw-gtk3-$version
+
+ ninja
+ DESTDIR=$PKG ninja  install
+}
+
