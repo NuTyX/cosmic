@@ -6,15 +6,16 @@ contributors="Great-OS Team"
 
 set=(cosmic)
 
-makedepends=(llvm cosmic-icon-theme libxkbcommon  mesa pipewire rustc just wayland)
-run=(xdg-desktop-portal)
+makedepends=(llvm libxkbcommon mesa pipewire rustc just wayland)
+run=(xdg-desktop-portal cosmic-icon-theme gtk-update-icon-cache)
 
 
 name=xdg-desktop-portal-cosmic
 version=1.10.0
-release=1
+release=2
 
 PKGMK_KEEP_SOURCES="no"
+PKGMK_GROUPS=()
 
 source=(https://github.com/pop-os/xdg-desktop-portal-cosmic/archive/refs/tags/epoch-$version.tar.gz)
 
