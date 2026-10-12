@@ -6,15 +6,17 @@ contributors="Great-OS Team"
 
 set=(cosmic)
 
-makedepends=(llvm cosmic-comp cosmic-icon-theme greetd just libxkbcommon
-             pam rustc wayland dav1d)
+makedepends=(llvm just libxkbcommon
+             rustc wayland dav1d)
+run=(greetd pam cosmic-comp cosmic-icon-theme
+     gtk-update-icon-cache)
 
 name=cosmic-greeter
 version=1.10.0
-release=1
+release=2
 
 PKGMK_KEEP_SOURCES="no"
-
+PKGMK_GROUPS=()
 
 source=(https://github.com/pop-os/cosmic-greeter/archive/refs/tags/epoch-$version.tar.gz
         cosmic-greeter-display-manager.patch
