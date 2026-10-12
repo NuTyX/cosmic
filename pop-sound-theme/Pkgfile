@@ -8,8 +8,6 @@ name=pop-sound-theme
 version=5.5.1
 release=2
 
-set=(cosmic)
-
 PKGMK_KEEP_SOURCES="no"
 
 source=(https://github.com/pop-os/gtk-theme/archive/refs/tags/v${version}.tar.gz)
