@@ -14,16 +14,7 @@ PKGMK_KEEP_SOURCES="no"
 makedepends=(python meson)
 
 source=(https://github.com/lassekongo83/adw-gtk3/archive/refs/tags/v${version}.tar.gz)
-
-build() {
- mkdir build
- cd    build
-
- meson setup --prefix=/usr          \
-             --libdir=/usr/lib      \
-             ../adw-gtk3-$version
-
- ninja
- DESTDIR=$PKG ninja  install
-}
-
+prepare() {
+  mv adw-gtk3 adw-gtk-theme
+} 
+build=meson
