@@ -5,6 +5,9 @@ drwxr-xr-x	root/root	usr/lib/
 -rwxr-xr-x	root/root	usr/lib/switcheroo-control
 -rwxr-xr-x	root/root	usr/lib/switcheroo-control-check-discrete-amdgpu
 -rwxr-xr-x	root/root	usr/lib/switcheroo-control-check-discrete-nouveau
+drwxr-xr-x	root/root	usr/lib/systemd/
+drwxr-xr-x	root/root	usr/lib/systemd/system/
+-rw-r--r--	root/root	usr/lib/systemd/system/switcheroo-control.service
 drwxr-xr-x	root/root	usr/lib/udev/
 drwxr-xr-x	root/root	usr/lib/udev/hwdb.d/
 -rw-r--r--	root/root	usr/lib/udev/hwdb.d/30-pci-intel-gpu.hwdb
