@@ -6,14 +6,19 @@ contributors="Great-OS Team"
 
 set=(cosmic)
 
-makedepends=(llvm dconf just libxkbcommon mesa noto-fonts rustc switcheroo-control
-             ttf-opensans xdg-desktop-portal-cosmic xorg-xwayland)
+makedepends=(llvm dconf just libxkbcommon rustc)
+run=(ttf-opensans xdg-desktop-portal-cosmic noto-fonts mesa
+     cosmic-icon-theme cosmic-bg cosmic-applets cosmic-applibrary
+     pop-icon-theme cosmic-files cosmic-greeter cosmic-panel
+     power-profiles-daemon pop-launcher dart-sass dart-sdk buf
+     xorg-xwayland switcheroo-control gtk-update-icon-cache)
 
 name=cosmic-session
 version=1.10.0
-release=1
+release=2
 
 PKGMK_KEEP_SOURCES="no"
+PKGMK_GROUPS=()
 
 source=(https://github.com/pop-os/cosmic-session/archive/refs/tags/epoch-$version.tar.gz
         cosmic-session-lto.patch)
