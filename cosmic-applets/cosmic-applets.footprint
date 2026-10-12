@@ -18,6 +18,9 @@ lrwxrwxrwx	root/root	usr/bin/cosmic-applet-workspaces -> /usr/bin/cosmic-applets
 -rwxr-xr-x	root/root	usr/bin/cosmic-applets
 lrwxrwxrwx	root/root	usr/bin/cosmic-panel-button -> /usr/bin/cosmic-applets
 drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/systemd/
+drwxr-xr-x	root/root	usr/lib/systemd/user/
+-rw-r--r--	root/root	usr/lib/systemd/user/com.system76.CosmicStatusNotifierWatcher.service
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/applications/
 -rw-r--r--	root/root	usr/share/applications/com.system76.CosmicAppList.desktop
