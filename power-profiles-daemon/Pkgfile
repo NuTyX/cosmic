@@ -1,5 +1,3 @@
-makedepends=(bash-completion glib libgudev polkit python-gobject upower)
-
 description="Makes power profiles handling available over D-Bus"
 url="https://gitlab.freedesktop.org/upower/power-profiles-daemon"
 
@@ -8,24 +6,16 @@ contributors="Great-OS Team"
 
 name=power-profiles-daemon
 version=0.30
-release=3
+release=2
+
+makedepends=(bash-completion glib libgudev polkit
+             python-gobject)
+run=(upower)
 
 PKGMK_KEEP_SOURCES="no"
+PKGMK_MESON_OPTIONS="-D gtk_doc=false -D tests=false"
+PKGMK_GROUPS=()
 
 source=(https://gitlab.freedesktop.org/upower/power-profiles-daemon/-/archive/$version/power-profiles-daemon-$version.tar.gz)
 
-build() {
-
-mkdir build
-cd    build
-
-meson setup --prefix=/usr        \
-            --libdir=/usr/lib    \
-            --buildtype=release  \
-            -D gtk_doc=false     \
-            -D tests=false       \
-            ../$name-$version
-
-ninja
-DESTDIR=$PKG ninja  install
-}
+build=meson
