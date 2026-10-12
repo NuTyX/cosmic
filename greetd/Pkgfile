@@ -8,21 +8,20 @@ contributors="Great-OS Team"
 
 name=greetd
 version=0.10.3
-release=1
+release=2
 
 PKGMK_KEEP_SOURCES="no"
+PKGMK_GROUPS=(man)
 
 source=(https://git.sr.ht/~kennylevinsen/greetd/archive/$version.tar.gz
         greetd.sysusers
         greetd.pam)
 
-  # this version of greetd is modified for cosmic-greeter
-
 prepare() {
   cd $name-$version
 
-	sed -i -e '/feature.doc_cfg/d' greetd_ipc/src/lib.rs
-	cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+  sed -i -e '/feature.doc_cfg/d' greetd_ipc/src/lib.rs
+  cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
 }
 
 build() {
@@ -35,16 +34,10 @@ build() {
 	# until installing a different one would work without manual intervention.
 
 	install -Dm0755 -t $PKG/usr/bin/ target/release/greetd
-  install -Dm0755 -t $PKG/usr/bin/ target/release/agreety
+	install -Dm0755 -t $PKG/usr/bin/ target/release/agreety
 	install -Dm0644 -t $PKG/usr/lib/systemd/system/ greetd.service
 	install -Dm0644 -t $PKG/etc/greetd/ config.toml
-#	install -Dm0644 ../greetd.pam $PKG/etc/pam.d/greetd
+	install -Dm0644 ../greetd.pam $PKG/etc/pam.d/greetd
 	install -Dm0644 ../greetd.sysusers $PKG/usr/lib/sysusers.d/greetd.conf
 	make -C man DESTDIR=$PKG PREFIX=/usr install
-
-# configuration greetd for COSMIC -> link is removed
-  # Symbolic link on pam
-  # mkdir -pv $PKG/etc/pam.d
-  # ln -svf login $PKG/etc/pam.d/system-login
 }
-
