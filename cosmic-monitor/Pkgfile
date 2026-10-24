@@ -8,7 +8,7 @@ set=(cosmic)
 makedepends=(cosmic-icon-theme just libinput libxkbcommon rustc systemd)
 
 name=cosmic-monitor
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
