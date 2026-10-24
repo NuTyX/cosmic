@@ -9,7 +9,7 @@ contributors="Great-OS Team"
 set=(cosmic)
 
 name=cosmic-idle
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
