@@ -10,8 +10,8 @@ makedepends=(pop-icon-theme just)
 run=(gtk-update-icon-cache)
 
 name=cosmic-icon-theme
-version=1.10.0
-release=2
+version=1.11.0
+release=1
 
 _name=cosmic-icons
 
