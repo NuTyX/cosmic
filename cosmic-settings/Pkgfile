@@ -15,7 +15,7 @@ run=(pop-icon-theme pop-sound-theme cosmic-icon-theme adw-gtk-theme
 
 
 name=cosmic-settings
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
