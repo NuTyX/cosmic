@@ -11,7 +11,7 @@ makedepends=(llvm acpid just alsa-utils geoclue2 libinput libxkbcommon
 run=(xdg-utils adw-gtk-theme cosmic-sound-theme)
 
 name=cosmic-settings-daemon
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
