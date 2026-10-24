@@ -11,8 +11,8 @@ run=(xdg-desktop-portal cosmic-icon-theme gtk-update-icon-cache)
 
 
 name=xdg-desktop-portal-cosmic
-version=1.10.0
-release=2
+version=1.11.0
+release=1
 
 PKGMK_KEEP_SOURCES="no"
 PKGMK_GROUPS=()
