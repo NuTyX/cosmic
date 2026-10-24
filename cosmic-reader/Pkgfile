@@ -11,7 +11,7 @@ makedepends=(brotli cosmic-icon-theme git gumbo-parser harfbuzz jbig2dec just
               systemd tesseract unzip xorg-fontconfig)
 
 name=cosmic-reader
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
