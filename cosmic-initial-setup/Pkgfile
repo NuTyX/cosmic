@@ -8,7 +8,7 @@ set=(cosmic)
 makedepends=(cosmic-icon-theme just libinput libxkbcommon polkit pulseaudio rustc systemd)
 
 name=cosmic-initial-setup
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
