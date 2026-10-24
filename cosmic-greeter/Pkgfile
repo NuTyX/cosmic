@@ -12,8 +12,8 @@ run=(greetd pam cosmic-comp cosmic-icon-theme
      gtk-update-icon-cache)
 
 name=cosmic-greeter
-version=1.10.0
-release=2
+version=1.11.0
+release=1
 
 PKGMK_KEEP_SOURCES="no"
 PKGMK_GROUPS=()
