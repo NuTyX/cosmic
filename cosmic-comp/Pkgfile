@@ -10,7 +10,7 @@ makedepends=(just llvm libdisplay-info libinput libxcb libxkbcommon
              mesa rustc seatd systemd wayland xorg-fontconfig xorg-pixman)
 
 name=cosmic-comp
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
