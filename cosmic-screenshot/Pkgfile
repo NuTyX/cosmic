@@ -9,7 +9,7 @@ set=(cosmic)
 makedepends=(cosmic-icon-theme just libxkbcommon rustc xdg-desktop-portal-cosmic)
 
 name=cosmic-screenshot
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
