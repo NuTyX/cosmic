@@ -9,17 +9,16 @@ contributors="Great-OS Team"
 set=(cosmic)
 
 name=cosmic-randr
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
 
-source=(https://github.com/pop-os/cosmic-randr/archive/refs/tags/epoch-$version.tar.gz
-        cosmic-randr-lto.patch)
+source=(https://github.com/pop-os/cosmic-randr/archive/refs/tags/epoch-$version.tar.gz)
 
 prepare() {
   cd $name-epoch-$version
-  patch -Np1 -i ../cosmic-randr-lto.patch
+#  patch -Np1 -i ../cosmic-randr-lto.patch
   cargo fetch --locked
 }
 
