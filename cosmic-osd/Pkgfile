@@ -9,7 +9,7 @@ makedepends=(llvm just libinput libxkbcommon pipewire pulseaudio rustc
              sound-theme-freedesktop systemd wayland)
 
 name=cosmic-osd
-version=1.10.0
+version=1.11.0
 release=1
 
 PKGMK_KEEP_SOURCES="no"
