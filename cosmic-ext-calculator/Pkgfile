@@ -1,0 +1,22 @@
+makedepends=(llvm git just libxkbcommon rustc wayland)
+
+description="Cosmic simple calculator"
+url="https://github.com/pop-os/cosmic-idle"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Great-OS Team"
+
+name=cosmic-ext-calculator
+version=0.2.1
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://github.com/cosmic-utils/$name/archive/refs/tags/$version.tar.gz)
+
+build() {
+  cd $name-$version
+  cargo fetch --locked
+  just build-release --frozen
+  just rootdir=$PKG install
+}
