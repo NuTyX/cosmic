@@ -1,0 +1,22 @@
+makedepends=(llvm git just libxkbcommon rustc wayland)
+
+description="Cosmic Mini monitor for CPU Memory Network Disk and GPU usages."
+url="https://github.com/pop-os/cosmic-idle"
+
+packager="tnut <tnut@nutyx.org>"
+contributors="Spiky"
+
+name=cosmic-ext-applet-minimon
+version=1.3.0
+release=1
+
+PKGMK_KEEP_SOURCES="no"
+
+source=(https://github.com/cosmic-utils/$name/archive/refs/tags/v$version.tar.gz)
+
+build() {
+  cd $name-$version
+  cargo fetch --locked
+  just build-release --frozen
+  just rootdir=$PKG install
+}
