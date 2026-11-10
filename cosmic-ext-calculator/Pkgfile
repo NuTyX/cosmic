@@ -1,16 +1,18 @@
 makedepends=(llvm git just libxkbcommon rustc wayland)
 
-description="Cosmic simple calculator"
-url="https://github.com/pop-os/cosmic-idle"
+description="Calculator for the COSMIC desktop."
+url="https://github.com/cosmic-utils/cosmic-ext-calculator"
 
 packager="tnut <tnut@nutyx.org>"
-contributors="Great-OS Team"
+contributors="Spiky"
 
 name=cosmic-ext-calculator
 version=0.2.1
-release=1
+release=2
 
 PKGMK_KEEP_SOURCES="no"
+
+run=(libqalculate)
 
 source=(https://github.com/cosmic-utils/$name/archive/refs/tags/$version.tar.gz)
 
